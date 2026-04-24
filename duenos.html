@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetCare - Gestión de Dueños</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="img/logo.png" alt="VetCare" class="nav-logo"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            
+            <!-- Logo SVG de respaldo -->
+            <svg viewBox="0 0 100 100" class="nav-logo" style="display: none;">
+                <circle cx="50" cy="50" r="48" fill="none" stroke="#4CAF50" stroke-width="4"/>
+                <path d="M30 60 Q50 30 70 60" fill="none" stroke="#2E7D32" stroke-width="4"/>
+                <circle cx="35" cy="55" r="4" fill="#4CAF50"/>
+                <circle cx="65" cy="55" r="4" fill="#4CAF50"/>
+            </svg>
+            
+            <span>Rimberio</span>
+        </div>
+        <ul class="navbar-menu">
+            <li><a href="panel.html">Dashboard</a></li>
+            <li><a href="duenos.html" class="active">Dueños</a></li>
+            <li><a href="mascotas.html">Mascotas</a></li>
+            <li><a href="citas.html">Citas</a></li>
+        </ul>
+        <div class="navbar-user">
+            <span id="userName">Recepcionista</span>
+            <button id="logoutBtn" class="btn-logout">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <main class="module-container">
+        <div class="module-header">
+            <h1 class="page-title">Gestión de Dueños</h1>
+            <button class="btn-primary" onclick="openModal('duenoModal')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="btn-icon">
+                    <path d="M12 5v14M5 12h14"/>
+                </svg>
+                Nuevo Dueño
+            </button>
+        </div>
+
+        <!-- Barra de búsqueda -->
+        <div class="search-bar">
+            <div class="search-input">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="search-icon">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="M21 21l-4.35-4.35"/>
+                </svg>
+                <input type="text" id="searchDueno" placeholder="Buscar por nombre o teléfono..." onkeyup="filtrarDuenos()">
+            </div>
+        </div>
+
+        <!-- Tabla de dueños -->
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Teléfono</th>
+                        <th>Email</th>
+                        <th>Dirección</th>
+                        <th>Mascotas</th>
+                        <th>Fecha Registro</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="duenosTableBody">
+                    <!-- Datos dinámicos -->
+                </tbody>
+            </table>
+            <div id="noResults" class="no-results" style="display: none;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="empty-icon">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="M21 21l-4.35-4.35"/>
+                </svg>
+                <p>No se encontraron dueños</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para agregar/editar dueño -->
+    <div id="duenoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Registrar Datos Del Dueño</h2>
+                <button class="modal-close" onclick="closeModal('duenoModal')">&times;</button>
+            </div>
+            <form id="duenoForm" onsubmit="guardarDueno(event)">
+                <input type="hidden" id="duenoId">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo *</label>
+                        <input type="text" id="nombre" required placeholder="Nombre y apellidos">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono *</label>
+                        <input type="tel" id="telefono" required placeholder="Número de contacto">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="correo@ejemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion">Dirección</label>
+                        <input type="text" id="direccion" placeholder="Dirección completa">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="notas">Notas adicionales</label>
+                        <textarea id="notas" rows="3" placeholder="Información adicional del dueño"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeModal('duenoModal')">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar Dueño</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/duenos.js"></script>
+</body>
+</html>

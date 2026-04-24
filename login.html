@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetCare - Iniciar Sesión</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="login-container">
+        <!-- Carrusel de imágenes -->
+        <div class="login-carousel">
+            <div class="carousel-slides">
+                <div class="slide active">
+                    <img src="img/vet-clinic-1.jpg" alt="Clínica Veterinaria">
+                    <div class="slide-content">
+                        <h2>Cuidamos a tus mejores amigos</h2>
+                        <p>Más de 10 años de experiencia en atención veterinaria</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="img/vet-clinic-2.jpg" alt="Atención Profesional">
+                    <div class="slide-content">
+                        <h2>Equipo profesional</h2>
+                        <p>Veterinarios certificados y apasionados por los animales</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="img/vet-clinic-3.jpg" alt="Instalaciones Modernas">
+                    <div class="slide-content">
+                        <h2>Instalaciones modernas</h2>
+                        <p>Tecnología de punta para el cuidado de tu mascota</p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+
+        <!-- Formulario de Login -->
+        <div class="login-form-container">
+            <div class="login-form">
+                            <!-- En login.html, reemplaza el logo SVG -->
+            <div class="login-logo">
+                <img src="img/logo.png" alt="VetCare Logo" class="vet-logo" 
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                
+                <!-- Logo SVG de respaldo (por si no carga la imagen) -->
+                <svg viewBox="0 0 100 100" class="vet-logo" style="display: none;">
+                    <circle cx="50" cy="50" r="48" fill="none" stroke="#4CAF50" stroke-width="4"/>
+                    <path d="M30 60 Q50 30 70 60" fill="none" stroke="#2E7D32" stroke-width="4"/>
+                    <circle cx="35" cy="55" r="4" fill="#4CAF50"/>
+                    <circle cx="65" cy="55" r="4" fill="#4CAF50"/>
+                    <circle cx="30" cy="45" r="4" fill="#4CAF50"/>
+                    <circle cx="70" cy="45" r="4" fill="#4CAF50"/>
+                </svg>
+                
+                <h1>Rimberio</h1>
+                <p class="subtitle">Sistema de Gestión Veterinaria</p>
+            </div>
+
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Usuario</label>
+                        <div class="input-with-icon">
+                            <span class="input-icon-left">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                            </span>
+                            <input type="text" id="username" required placeholder="Ingrese su usuario">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <div class="input-with-icon">
+                            <span class="input-icon-left">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                </svg>
+                            </span>
+                            <input type="password" id="password" required placeholder="Ingrese su contraseña">
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox"> Recordar sesión
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-login">
+                        Iniciar Sesión
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                    </button>
+                </form>
+
+                <div id="error-message" class="error-message"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

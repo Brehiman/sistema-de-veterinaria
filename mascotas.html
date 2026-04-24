@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetCare - Gestión de Mascotas</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="img/logo.png" alt="VetCare" class="nav-logo"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            
+            <!-- Logo SVG de respaldo -->
+            <svg viewBox="0 0 100 100" class="nav-logo" style="display: none;">
+                <circle cx="50" cy="50" r="48" fill="none" stroke="#4CAF50" stroke-width="4"/>
+                <path d="M30 60 Q50 30 70 60" fill="none" stroke="#2E7D32" stroke-width="4"/>
+                <circle cx="35" cy="55" r="4" fill="#4CAF50"/>
+                <circle cx="65" cy="55" r="4" fill="#4CAF50"/>
+            </svg>
+            
+            <span>Rimberio</span>
+        </div>
+        <ul class="navbar-menu">
+            <li><a href="panel.html">Dashboard</a></li>
+            <li><a href="duenos.html">Dueños</a></li>
+            <li><a href="mascotas.html" class="active">Mascotas</a></li>
+            <li><a href="citas.html">Citas</a></li>
+        </ul>
+        <div class="navbar-user">
+            <span id="userName">Recepcionista</span>
+            <button id="logoutBtn" class="btn-logout">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <main class="module-container">
+        <div class="module-header">
+            <h1 class="page-title">Gestión de Mascotas</h1>
+            <button class="btn-primary" onclick="openModal('mascotaModal')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="btn-icon">
+                    <path d="M12 5v14M5 12h14"/>
+                </svg>
+                Nueva Mascota
+            </button>
+        </div>
+
+        <!-- Barra de búsqueda -->
+        <div class="search-bar">
+            <div class="search-input">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="search-icon">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="M21 21l-4.35-4.35"/>
+                </svg>
+                <input type="text" id="searchMascota" placeholder="Buscar por nombre de mascota o dueño..." onkeyup="filtrarMascotas()">
+            </div>
+        </div>
+
+        <!-- Tabla de mascotas -->
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Especie</th>
+                        <th>Raza</th>
+                        <th>Edad</th>
+                        <th>Dueño</th>
+                        <th>Teléfono Dueño</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="mascotasTableBody">
+                    <!-- Datos dinámicos -->
+                </tbody>
+            </table>
+            <div id="noResultsMascotas" class="no-results" style="display: none;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="empty-icon">
+                    <path d="M3 3h18v18H3z"/>
+                    <path d="M3 9h18"/>
+                    <circle cx="8" cy="15" r="2"/>
+                    <circle cx="16" cy="15" r="2"/>
+                </svg>
+                <p>No se encontraron mascotas</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para agregar/editar mascota -->
+    <div id="mascotaModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="mascotaModalTitle">Registrar Nueva Mascota</h2>
+                <button class="modal-close" onclick="closeModal('mascotaModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="mascotaForm" onsubmit="guardarMascota(event)">
+                    <input type="hidden" id="mascotaId">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="nombreMascota">Nombre de la mascota *</label>
+                            <input type="text" id="nombreMascota" required placeholder="Nombre de la mascota">
+                        </div>
+                        <div class="form-group">
+                            <label for="especie">Especie *</label>
+                            <select id="especie" required>
+                                <option value="">Seleccionar especie</option>
+                                <option value="Perro">Perro</option>
+                                <option value="Gato">Gato</option>
+                                <option value="Ave">Ave</option>
+                                <option value="Conejo">Conejo</option>
+                                <option value="Hamster">Hamster</option>
+                                <option value="Tortuga">Tortuga</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="raza">Raza</label>
+                            <input type="text" id="raza" placeholder="Raza de la mascota">
+                        </div>
+                        <div class="form-group">
+                            <label for="edad">Edad</label>
+                            <input type="text" id="edad" placeholder="Ej: 2 años, 6 meses">
+                        </div>
+                        <div class="form-group">
+                            <label for="color">Color</label>
+                            <input type="text" id="color" placeholder="Color del pelaje/plumaje">
+                        </div>
+                        <div class="form-group">
+                            <label for="peso">Peso (kg)</label>
+                            <input type="number" id="peso" step="0.1" placeholder="Peso en kilogramos">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="duenoMascota">Dueño *</label>
+                            <select id="duenoMascota" required>
+                                <option value="">Seleccionar dueño</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="notasMascota">Notas adicionales</label>
+                            <textarea id="notasMascota" rows="3" placeholder="Observaciones, alergias, condiciones especiales"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-secondary" onclick="closeModal('mascotaModal')">Cancelar</button>
+                        <button type="submit" class="btn-primary">Guardar Mascota</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/mascotas.js"></script>
+</body>
+</html>

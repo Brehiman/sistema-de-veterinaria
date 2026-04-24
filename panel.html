@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetCare - Panel de Control</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="img/logo.png" alt="VetCare" class="nav-logo"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            
+            <!-- Logo SVG de respaldo -->
+            <svg viewBox="0 0 100 100" class="nav-logo" style="display: none;">
+                <circle cx="50" cy="50" r="48" fill="none" stroke="#4CAF50" stroke-width="4"/>
+                <path d="M30 60 Q50 30 70 60" fill="none" stroke="#2E7D32" stroke-width="4"/>
+                <circle cx="35" cy="55" r="4" fill="#4CAF50"/>
+                <circle cx="65" cy="55" r="4" fill="#4CAF50"/>
+            </svg>
+            
+            <span>Rimberio</span>
+        </div>
+        <ul class="navbar-menu">
+            <li><a href="panel.html" class="active">Dashboard</a></li>
+            <li><a href="duenos.html">Dueños</a></li>
+            <li><a href="mascotas.html">Mascotas</a></li>
+            <li><a href="citas.html">Citas</a></li>
+        </ul>
+        <div class="navbar-user">
+            <span id="userName">Recepcionista</span>
+            <button id="logoutBtn" class="btn-logout">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <main class="dashboard">
+        <h1 class="page-title">Panel de Control</h1>
+        
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                </div>
+                <h3>Total Dueños</h3>
+                <p class="card-number" id="totalDuenos">0</p>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M3 3h18v18H3z"/>
+                        <path d="M3 9h18"/>
+                        <circle cx="8" cy="15" r="2"/>
+                        <circle cx="16" cy="15" r="2"/>
+                    </svg>
+                </div>
+                <h3>Total Mascotas</h3>
+                <p class="card-number" id="totalMascotas">0</p>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                </div>
+                <h3>Citas Hoy</h3>
+                <p class="card-number" id="citasHoy">0</p>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                    </svg>
+                </div>
+                <h3>Próximas Citas</h3>
+                <p class="card-number" id="proximasCitas">0</p>
+            </div>
+        </div>
+
+        <div class="dashboard-tables">
+            <section class="recent-section">
+                <h2>Últimos Dueños Registrados</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Teléfono</th>
+                                <th>Fecha Registro</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentDuenos">
+                            <!-- Datos dinámicos -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="recent-section">
+                <h2>Próximas Citas</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mascota</th>
+                                <th>Dueño</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentCitas">
+                            <!-- Datos dinámicos -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script src="js/panel.js"></script>
+</body>
+</html>
