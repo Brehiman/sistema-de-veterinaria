@@ -30,9 +30,20 @@
             <li><a href="citas.html">Citas</a></li>
         </ul>
         <div class="navbar-user">
-            <span id="userName">Recepcionista</span>
-            <button id="logoutBtn" class="btn-logout">Cerrar Sesión</button>
+    <div class="navbar-map tooltip-container">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="map-icon">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+        </svg>
+        <span>Ubicación</span>
+        <div class="tooltip-map">
+            <img src="img/el_granjero.png" alt="Cra 15B #40-18 Inducentro Guadalupe, Dosquebradas">
+            <p>Cra 15B #40-18, Dosquebradas</p>
         </div>
+    </div>
+    <span id="userName">Recepcionista</span>
+    <button id="logoutBtn" class="btn-logout">Cerrar Sesión</button>
+</div>
     </nav>
 
     <main class="module-container">
