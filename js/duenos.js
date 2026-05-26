@@ -191,8 +191,8 @@ function editarDueno(id) {
 
     document.getElementById('modalTitle').textContent = 'Editar Dueño';
     document.getElementById('duenoId').value = dueno.id;
-    document.getElementById('nombre').value = dueno.nombre;
-    document.getElementById('telefono').value = dueno.telefono;
+    document.getElementById('nombre').value = dueno.nombre || '';
+    document.getElementById('telefono').value = dueno.telefono || '';
     document.getElementById('email').value = dueno.email || '';
     document.getElementById('direccion').value = dueno.direccion || '';
     document.getElementById('notas').value = dueno.notas || '';

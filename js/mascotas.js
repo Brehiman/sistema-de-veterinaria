@@ -200,13 +200,13 @@ function editarMascota(id) {
 
     document.getElementById('mascotaModalTitle').textContent = 'Editar Mascota';
     document.getElementById('mascotaId').value = mascota.id;
-    document.getElementById('nombreMascota').value = mascota.nombre;
-    document.getElementById('especie').value = mascota.especie;
+    document.getElementById('nombreMascota').value = mascota.nombre || '';
+    document.getElementById('especie').value = mascota.especie || '';
     document.getElementById('raza').value = mascota.raza || '';
     document.getElementById('edad').value = mascota.edad || '';
     document.getElementById('color').value = mascota.color || '';
     document.getElementById('peso').value = mascota.peso || '';
-    document.getElementById('duenoMascota').value = mascota.duenoId;
+    document.getElementById('duenoMascota').value = mascota.duenoId || '';
     document.getElementById('notasMascota').value = mascota.notas || '';
     
     mascotasManager.currentId = id;

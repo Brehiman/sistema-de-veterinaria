@@ -244,11 +244,11 @@ function editarCita(id) {
 
     document.getElementById('citaModalTitle').textContent = 'Editar Cita';
     document.getElementById('citaId').value = cita.id;
-    document.getElementById('citaFecha').value = cita.fecha;
-    document.getElementById('citaHora').value = cita.hora;
-    document.getElementById('citaMascota').value = cita.mascotaId;
-    document.getElementById('citaMotivo').value = cita.motivo;
-    document.getElementById('citaEstado').value = cita.estado;
+    document.getElementById('citaFecha').value = cita.fecha || '';
+    document.getElementById('citaHora').value = cita.hora || '';
+    document.getElementById('citaMascota').value = cita.mascotaId || '';
+    document.getElementById('citaMotivo').value = cita.motivo || '';
+    document.getElementById('citaEstado').value = cita.estado || 'Pendiente';
     document.getElementById('citaNotas').value = cita.notas || '';
     
     citasManager.currentId = id;
