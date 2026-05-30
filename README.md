@@ -1,261 +1,247 @@
-## README.md
+Sí, el README tiene buena información, pero visualmente está muy cargado. Además, para un proyecto académico no necesitas que parezca documentación corporativa. Conviene simplificarlo, agrupar secciones y evitar bloques enormes que dificultan la lectura.
 
-```markdown
+Los principales problemas que veo:
+
+* La estructura del proyecto ocupa demasiado espacio.
+* Hay demasiados emojis.
+* La sección de tecnologías es redundante.
+* La tabla completa de APIs hace el README muy largo.
+* Los usuarios de prueba y el SQL ocupan mucho espacio para algo secundario.
+
+Yo lo dejaría así:
+
+---
+
 # 🐾 VetCare - Sistema de Gestión Veterinaria
 
 ![VetCare](frontend/img/logo.png)
 
-Sistema integral para la administración de clínicas veterinarias. Desarrollado como proyecto académico del curso **Programación y Servicios Web**.
+Sistema web para la administración de clínicas veterinarias desarrollado con **Node.js, Express y MySQL** como proyecto académico para la asignatura **Programación y Servicios Web**.
 
 ---
 
-## 👥 Equipo de Desarrollo
+## 👥 Equipo
 
-| Nombre | Rol | Módulo |
-|--------|-----|--------|
-| **Brehiman** | Líder / Full Stack | Arquitectura, Autenticación, Dashboard, Diseño CSS |
-| **Juliana** | Desarrollador | Dueños |
+| Integrante | Rol                            |
+| ---------- | ------------------------------ |
+| Brehiman   | Líder de proyecto / Full Stack |
+| Juliana    | Desarrollo módulo de Dueños    |
 
 ---
 
-## 🛠️ Tecnologías
+## 🛠️ Tecnologías Utilizadas
 
 ### Frontend
-- HTML5, CSS3, JavaScript (Vanilla)
-- Diseño responsive con Flexbox y Grid
-- Fetch API para consumo REST
+
+* HTML5
+* CSS3
+* JavaScript (Vanilla)
+* Fetch API
 
 ### Backend
-- **Node.js** + **Express.js**
-- **MySQL** (Base de datos relacional)
-- **bcrypt** (Hash de contraseñas)
-- **express-session** (Sesiones seguras)
-- **Multer** (Carga de imágenes)
+
+* Node.js
+* Express.js
+* MySQL
+* bcrypt
+* express-session
+* Multer
 
 ### Seguridad
-- **Helmet** (Cabeceras HTTP seguras)
-- **CORS** (Protección cross-origin)
-- **dotenv** (Variables de entorno)
-- Contraseñas encriptadas (nunca en texto plano)
 
----
-
-## 📁 Estructura del Proyecto
-
-```
-veterinaria/
-│
-├── backend/
-│   ├── server.js
-│   ├── config/
-│   │   └── db.js
-│   ├── controllers/
-│   │   ├── authController.js
-│   │   ├── duenosController.js
-│   │   ├── mascotasController.js
-│   │   ├── citasController.js
-│   │   ├── veterinariosController.js
-│   │   ├── medicamentosController.js
-│   │   ├── recetasController.js
-│   │   └── imagenesController.js
-│   ├── routes/
-│   │   ├── auth.js
-│   │   ├── duenos.js
-│   │   ├── mascotas.js
-│   │   ├── citas.js
-│   │   ├── veterinarios.js
-│   │   ├── medicamentos.js
-│   │   ├── recetas.js
-│   │   └── imagenes.js
-│   ├── middleware/
-│   │   └── auth.js
-│   ├── database/
-│   │   └── schema.sql
-│   └── .env
-│
-├── frontend/
-│   ├── index.html
-│   ├── login.html
-│   ├── panel.html
-│   ├── duenos.html
-│   ├── mascotas.html
-│   ├── citas.html
-│   ├── css/
-│   │   └── styles.css
-│   ├── js/
-│   │   ├── api.js
-│   │   ├── auth.js
-│   │   ├── panel.js
-│   │   ├── duenos.js
-│   │   ├── mascotas.js
-│   │   └── citas.js
-│   ├── img/
-│   │   └── logo.png
-│   └── uploads/
-│
-├── package.json
-├── .gitignore
-└── README.md
-```
+* Helmet
+* CORS
+* dotenv
+* Contraseñas cifradas
 
 ---
 
 ## 🚀 Funcionalidades
 
 ### 🔐 Autenticación
-- Inicio de sesión con validación
-- Registro de usuarios (solo admin)
-- Sesiones con cookies seguras
-- Protección de rutas privadas
-- Cierre de sesión
+
+* Inicio y cierre de sesión
+* Registro de usuarios
+* Protección de rutas privadas
+* Manejo de sesiones
 
 ### 📊 Dashboard
-- Total de dueños, mascotas y citas
-- Citas del día y próximas
-- Últimos registros
 
-### 👤 Dueños
-- CRUD completo
-- Búsqueda por nombre o teléfono
-- Visualización de detalle
-- Conteo de mascotas asociadas
+* Estadísticas generales
+* Citas del día
+* Últimos registros
 
-### 🐶 Mascotas
-- CRUD completo
-- Asociación con dueño existente
-- Búsqueda por nombre, especie o dueño
-- **Carga de imágenes** (fotos de la mascota)
+### 👤 Gestión de Dueños
 
-### 📅 Citas
-- CRUD completo
-- Asignación de veterinario
-- Filtros por fecha
-- Estados visuales (Pendiente, Confirmada, etc.)
-- **Carga de imágenes** (evidencias de consulta)
+* Crear, consultar, editar y eliminar
+* Búsqueda por nombre o teléfono
+
+### 🐶 Gestión de Mascotas
+
+* CRUD completo
+* Asociación con dueños
+* Búsquedas y filtros
+* Carga de fotografías
+
+### 📅 Gestión de Citas
+
+* CRUD completo
+* Asignación de veterinarios
+* Control de estados
+* Evidencias mediante imágenes
 
 ### 💊 Recetas Médicas
-- Creación de recetas por cita
-- Selección de medicamentos
-- Diagnóstico e indicaciones
-- **Impresión de receta** (HTML imprimible)
 
-### 🩺 Veterinarios
-- Registro de veterinarios
-- Especialidades
-- Asignación a citas
+* Generación de recetas
+* Selección de medicamentos
+* Impresión de recetas
 
-### 💉 Medicamentos
-- Catálogo de medicamentos
-- Presentación y stock
+### 🩺 Veterinarios y Medicamentos
+
+* Registro de veterinarios
+* Especialidades
+* Catálogo de medicamentos
+* Control de stock
+
+---
+
+## 📁 Estructura General
+
+```text
+veterinaria
+├── backend
+│   ├── controllers
+│   ├── routes
+│   ├── middleware
+│   ├── database
+│   └── config
+│
+├── frontend
+│   ├── css
+│   ├── js
+│   ├── img
+│   └── uploads
+│
+├── package.json
+└── README.md
+```
+
+> El proyecto sigue una arquitectura basada en controladores, rutas y módulos independientes para facilitar el mantenimiento y escalabilidad.
 
 ---
 
 ## ⚙️ Instalación
 
-### Requisitos
-- **Node.js** v18 o superior
-- **MySQL** Server 8.0 o superior
-- **MySQL Workbench** (recomendado)
+### 1. Clonar repositorio
 
-### Paso 1: Clonar el repositorio
 ```bash
 git clone https://github.com/Brehiman/sistema-de-veterinaria.git
 cd veterinaria
 ```
 
-### Paso 2: Instalar dependencias
+### 2. Instalar dependencias
+
 ```bash
 npm install
 ```
 
-### Paso 3: Crear carpeta uploads
-```bash
-mkdir frontend/uploads
+### 3. Configurar base de datos
+
+Ejecutar:
+
+```sql
+backend/database/schema.sql
 ```
 
-### Paso 4: Configurar base de datos
-1. Abrir **MySQL Workbench**
-2. Ejecutar el archivo `backend/database/schema.sql`
-3. Verificar que se crearon las tablas
+en MySQL Workbench o phpMyAdmin.
 
-### Paso 5: Configurar variables de entorno
-Crear archivo `backend/.env`:
+### 4. Configurar variables de entorno
+
 ```env
 DB_HOST=localhost
 DB_USER=root
-DB_PASSWORD=tu_contraseña
+DB_PASSWORD=
 DB_NAME=veterinaria
 DB_PORT=3306
-SESSION_SECRET=vetcare_secret_key_2024
+
+SESSION_SECRET=vetcare_secret_key
 PORT=3000
 ```
 
-### Paso 6: Iniciar el servidor
+### 5. Ejecutar aplicación
+
 ```bash
 npm run dev
 ```
 
-### Paso 7: Acceder al sistema
-```
+Acceder desde:
+
+```text
 http://localhost:3000/login.html
 ```
 
 ---
 
-## 🔑 Usuarios de Prueba
+## 📡 Principales Endpoints
 
-| Usuario | Contraseña | Rol |
-|---------|------------|-----|
-| `admin` | `admin123` | Administrador |
-| `recepcion` | `recepcion123` | Recepcionista |
+### Autenticación
 
-> **Nota:** Si los usuarios no funcionan, ejecuta en MySQL Workbench:
-> ```sql
-> SET SQL_SAFE_UPDATES = 0;
-> DELETE FROM usuarios;
-> INSERT INTO usuarios (username, password, nombre, rol) 
-> VALUES ('admin', '$2b$10$hash_generado', 'Administrador', 'admin');
-> ```
-> Genera el hash con: `node -e "const bcrypt = require('bcrypt'); bcrypt.hash('admin123', 10).then(h => console.log(h));"`
+```http
+POST /api/auth/login
+POST /api/auth/registro
+GET  /api/auth/verificar
+POST /api/auth/logout
+```
 
----
+### Dueños
 
-## 📡 APIs REST
+```http
+GET    /api/duenos
+POST   /api/duenos
+PUT    /api/duenos/:id
+DELETE /api/duenos/:id
+```
 
-| Método | Endpoint | Descripción |
-|--------|----------|-------------|
-| POST | `/api/auth/login` | Iniciar sesión |
-| POST | `/api/auth/registro` | Registrar usuario |
-| GET | `/api/auth/verificar` | Verificar sesión |
-| POST | `/api/auth/logout` | Cerrar sesión |
-| GET | `/api/duenos` | Listar dueños |
-| POST | `/api/duenos` | Crear dueño |
-| PUT | `/api/duenos/:id` | Editar dueño |
-| DELETE | `/api/duenos/:id` | Eliminar dueño |
-| GET | `/api/mascotas` | Listar mascotas |
-| POST | `/api/mascotas` | Crear mascota |
-| GET | `/api/citas` | Listar citas |
-| GET | `/api/citas/today` | Citas de hoy |
-| GET | `/api/citas/upcoming` | Próximas citas |
-| POST | `/api/recetas` | Crear receta |
-| GET | `/api/recetas/imprimir/:id` | Imprimir receta |
-| POST | `/api/imagenes` | Subir imagen |
+### Mascotas
+
+```http
+GET    /api/mascotas
+POST   /api/mascotas
+PUT    /api/mascotas/:id
+DELETE /api/mascotas/:id
+```
+
+### Citas
+
+```http
+GET    /api/citas
+GET    /api/citas/today
+GET    /api/citas/upcoming
+POST   /api/citas
+```
+
+### Otros módulos
+
+```http
+POST /api/recetas
+POST /api/imagenes
+```
 
 ---
 
 ## 🎨 Paleta de Colores
 
-| Color | Código | Uso |
-|-------|--------|-----|
-| Verde principal | `#4CAF50` | Botones, elementos activos |
-| Verde oscuro | `#2E7D32` | Encabezados, degradados |
-| Blanco | `#FFFFFF` | Fondos, tarjetas |
-| Gris | `#E5E7EB` | Bordes, placeholders |
+| Elemento   | Color   |
+| ---------- | ------- |
+| Principal  | #4CAF50 |
+| Secundario | #2E7D32 |
+| Fondo      | #FFFFFF |
+| Bordes     | #E5E7EB |
 
 ---
 
 ## 📝 Licencia
 
-Este proyecto fue desarrollado con fines académicos para el curso de **Programación y Servicios Web**.
+Proyecto desarrollado con fines académicos para la asignatura **Programación y Servicios Web**.
 
 ---
