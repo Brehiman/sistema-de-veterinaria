@@ -11,7 +11,7 @@ Sistema web para la administración de clínicas veterinarias desarrollado con *
 | Integrante | Rol                            |
 | ---------- | ------------------------------ |
 | Brehiman   | Líder de proyecto / Full Stack |
-| Juliana    | Desarrollo módulo de Dueños    |
+| Juliana    | Desarrollo / Full Stack  |
 
 ---
 
