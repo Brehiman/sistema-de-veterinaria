@@ -46,10 +46,10 @@ Sistema integral para la administración de clínicas veterinarias. Desarrollado
 veterinaria/
 │
 ├── backend/
-│   ├── server.js                 # Servidor Express
+│   ├── server.js
 │   ├── config/
-│   │   └── db.js                 # Conexión a MySQL
-│   ├── controllers/              # Lógica de negocio
+│   │   └── db.js
+│   ├── controllers/
 │   │   ├── authController.js
 │   │   ├── duenosController.js
 │   │   ├── mascotasController.js
@@ -58,7 +58,7 @@ veterinaria/
 │   │   ├── medicamentosController.js
 │   │   ├── recetasController.js
 │   │   └── imagenesController.js
-│   ├── routes/                   # Rutas API REST
+│   ├── routes/
 │   │   ├── auth.js
 │   │   ├── duenos.js
 │   │   ├── mascotas.js
@@ -68,30 +68,30 @@ veterinaria/
 │   │   ├── recetas.js
 │   │   └── imagenes.js
 │   ├── middleware/
-│   │   └── auth.js               # Protección de rutas
+│   │   └── auth.js
 │   ├── database/
-│   │   └── schema.sql            # Estructura BD
-│   └── .env                      # Variables de entorno
+│   │   └── schema.sql
+│   └── .env
 │
 ├── frontend/
 │   ├── index.html
-│   ├── login.html                # Login con carrusel
-│   ├── panel.html                # Dashboard
-│   ├── duenos.html               # Gestión de dueños
-│   ├── mascotas.html             # Gestión de mascotas
-│   ├── citas.html                # Gestión de citas
+│   ├── login.html
+│   ├── panel.html
+│   ├── duenos.html
+│   ├── mascotas.html
+│   ├── citas.html
 │   ├── css/
 │   │   └── styles.css
 │   ├── js/
-│   │   ├── api.js                # Cliente HTTP unificado
-│   │   ├── auth.js               # Autenticación
-│   │   ├── panel.js              # Dashboard
-│   │   ├── duenos.js             # CRUD dueños
-│   │   ├── mascotas.js           # CRUD mascotas + imágenes
-│   │   └── citas.js              # CRUD citas + recetas + imágenes
+│   │   ├── api.js
+│   │   ├── auth.js
+│   │   ├── panel.js
+│   │   ├── duenos.js
+│   │   ├── mascotas.js
+│   │   └── citas.js
 │   ├── img/
 │   │   └── logo.png
-│   └── uploads/                  # Imágenes subidas
+│   └── uploads/
 │
 ├── package.json
 ├── .gitignore
