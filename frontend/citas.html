@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetCare - Gestión de Citas</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="img/logo.png" alt="VetCare" class="nav-logo"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            
+            <!-- Logo SVG de respaldo -->
+            <svg viewBox="0 0 100 100" class="nav-logo" style="display: none;">
+                <circle cx="50" cy="50" r="48" fill="none" stroke="#4CAF50" stroke-width="4"/>
+                <path d="M30 60 Q50 30 70 60" fill="none" stroke="#2E7D32" stroke-width="4"/>
+                <circle cx="35" cy="55" r="4" fill="#4CAF50"/>
+                <circle cx="65" cy="55" r="4" fill="#4CAF50"/>
+            </svg>
+            
+            <span>Rimberio</span>
+        </div>
+        <ul class="navbar-menu">
+            <li><a href="panel.html">Dashboard</a></li>
+            <li><a href="duenos.html">Dueños</a></li>
+            <li><a href="mascotas.html">Mascotas</a></li>
+            <li><a href="citas.html" class="active">Citas</a></li>
+        </ul>
+        <div class="navbar-user">
+            <div class="navbar-map tooltip-container">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="map-icon">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <span>Ubicación</span>
+                <div class="tooltip-map">
+                    <img src="img/el_granjero.png" alt="Cra 15B #40-18 Inducentro Guadalupe, Dosquebradas">
+                    <p>Cra 15B #40-18, Dosquebradas</p>
+                </div>
+            </div>
+            <span id="userName">Recepcionista</span>
+            <button id="logoutBtn" class="btn-logout">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <main class="module-container">
+        <div class="module-header">
+            <h1 class="page-title">Gestión de Citas</h1>
+            <button class="btn-primary" onclick="abrirModalNuevaCita()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="btn-icon">
+                    <path d="M12 5v14M5 12h14"/>
+                </svg>
+                Nueva Cita
+            </button>
+        </div>
+
+        <!-- Filtros de citas -->
+        <div class="citas-filters">
+            <div class="filter-date">
+                <label for="filterFecha">Mostrar citas del día:</label>
+                <input type="date" id="filterFecha" onchange="filtrarCitas()">
+            </div>
+            <div class="filter-buttons">
+                <button class="btn-filter active" onclick="mostrarTodasCitas()">Todas las citas</button>
+                <button class="btn-filter" onclick="mostrarCitasHoy()">Citas de hoy</button>
+                <button class="btn-filter" onclick="mostrarProximasCitas()">Próximas citas</button>
+            </div>
+        </div>
+
+        <!-- Calendario de citas -->
+        <div class="citas-container">
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Mascota</th>
+                            <th>Dueño</th>
+                            <th>Motivo</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="citasTableBody">
+                        <!-- Datos dinámicos -->
+                    </tbody>
+                </table>
+                <div id="noResultsCitas" class="no-results" style="display: none;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="empty-icon">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                    <p>No hay citas programadas</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para agendar/editar cita -->
+    <div id="citaModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="citaModalTitle">Agendar Nueva Cita</h2>
+                <button class="modal-close" onclick="closeModal('citaModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="citaForm" onsubmit="guardarCita(event)">
+                    <input type="hidden" id="citaId">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="citaFecha">Fecha *</label>
+                            <input type="date" id="citaFecha" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="citaHora">Hora *</label>
+                            <input type="time" id="citaHora" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="citaMascota">Mascota *</label>
+                            <select id="citaMascota" required onchange="cargarDuenoMascota()">
+                                <option value="">Seleccionar mascota</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="citaDueño">Dueño</label>
+                            <input type="text" id="citaDueño" readonly placeholder="Seleccione una mascota">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="citaMotivo">Motivo de la consulta *</label>
+                            <select id="citaMotivo" required>
+                                <option value="">Seleccionar motivo</option>
+                                <option value="Consulta general">Consulta general</option>
+                                <option value="Vacunación">Vacunación</option>
+                                <option value="Desparasitación">Desparasitación</option>
+                                <option value="Control">Control</option>
+                                <option value="Cirugía">Cirugía</option>
+                                <option value="Urgencia">Urgencia</option>
+                                <option value="Peluquería">Peluquería</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="citaVeterinario">Veterinario</label>
+                            <select id="citaVeterinario">
+                                <option value="">Seleccionar veterinario</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="citaNotas">Notas adicionales</label>
+                            <textarea id="citaNotas" rows="3" placeholder="Observaciones o requerimientos especiales"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="citaEstado">Estado</label>
+                            <select id="citaEstado">
+                                <option value="Pendiente">Pendiente</option>
+                                <option value="Confirmada">Confirmada</option>
+                                <option value="En proceso">En proceso</option>
+                                <option value="Completada">Completada</option>
+                                <option value="Cancelada">Cancelada</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-secondary" onclick="closeModal('citaModal')">Cancelar</button>
+                        <button type="submit" class="btn-primary">Guardar Cita</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación para eliminar -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content modal-confirm">
+            <div class="modal-header">
+                <h3>Confirmar Eliminación</h3>
+                <button class="modal-close" onclick="closeModal('confirmModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="confirm-message">¿Está seguro de que desea eliminar este registro? Esta acción no se puede deshacer.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('confirmModal')">Cancelar</button>
+                <button class="btn-danger" id="confirmDeleteBtn">Eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/citas.js"></script>
+</body>
+</html>
