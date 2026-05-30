@@ -1,18 +1,4 @@
-Sí, el README tiene buena información, pero visualmente está muy cargado. Además, para un proyecto académico no necesitas que parezca documentación corporativa. Conviene simplificarlo, agrupar secciones y evitar bloques enormes que dificultan la lectura.
-
-Los principales problemas que veo:
-
-* La estructura del proyecto ocupa demasiado espacio.
-* Hay demasiados emojis.
-* La sección de tecnologías es redundante.
-* La tabla completa de APIs hace el README muy largo.
-* Los usuarios de prueba y el SQL ocupan mucho espacio para algo secundario.
-
-Yo lo dejaría así:
-
----
-
-# 🐾 VetCare - Sistema de Gestión Veterinaria
+🐾 VetCare - Sistema de Gestión Veterinaria
 
 ![VetCare](frontend/img/logo.png)
 
